@@ -6,12 +6,12 @@
  */
  
 package queue;
-import exceptions.EmptyCollectionException;
+import exceptions.NoElementsException;
 
 public class LinkedQueue<T> implements Queue<T>
 {
 	private int count;
-	private LinearNode<T> front, rear;
+	private Node<T> front, rear;
 	
 	public LinkedQueue()
 	{
@@ -19,15 +19,15 @@ public class LinkedQueue<T> implements Queue<T>
 		front = rear = null;
 	}
 	
-	// Adds an element to the queue
+	// Append an element on the queue
 	public void enqueue(T element)
 	{
 		// Set a temporary reference to a new node
-		LinearNode<T> node = new LinearNode<T>(element);
+		Node<T> node = new Node<T>(element);
 		
-		if (count==0)
-			front = node;	// special case where queue is empty
-		else	// otherwise set next reference of rear node to this node
+		if (count==0)		// special case where queue is empty
+			front = node;
+		else				// otherwise set next reference of rear node to this node
 			rear.setNext(node);
 		
 		// Set rear reference to current node
@@ -36,13 +36,13 @@ public class LinkedQueue<T> implements Queue<T>
 	}
 	
 	// Remove first element from the queue (FIFO)
-	public T dequeue() throws EmptyCollectionException
+	public T dequeue() throws NoElementsException
 	{
 		if(isEmpty())
-			throw new EmptyCollectionException("Cannot dequeue: Queue is empty!");
+			throw new NoElementsException("Cannot dequeue: Queue is empty!");
 		
 		// Temporary reference
-		LinearNode<T> node = new LinearNode<T>();
+		Node<T> node = new Node<T>();
 		
 		// handle case of removing only existing element
 		if(count==1)	// null all references; instantiate temp node
@@ -86,7 +86,7 @@ public class LinkedQueue<T> implements Queue<T>
 	public String toString()
 	{
 		String descrip = "<FRONT OF QUEUE>\n";
-		LinearNode<T> current = new LinearNode<T>();
+		Node<T> current = new Node<T>();
 		current = front;
 		
 		while (current!=null)

@@ -5,7 +5,7 @@
  */
 
 package queue;
-import exceptions.EmptyCollectionException;
+import exceptions.NoElementsException;
 
 public interface Queue<T>
 {
@@ -13,11 +13,11 @@ public interface Queue<T>
 	public void enqueue(T element);
 	
 	// Removes and returns the element at the front of the queue
-	public T dequeue() throws EmptyCollectionException;
+	public T dequeue() throws NoElementsException;
 	
 	// Returns a reference to the element at the front of
 	// the queue without removing it
-	public T first() throws EmptyCollectionException;
+	public T first() throws NoElementsException;
 	
 	// Returns true if queue contains no elements; false otherwise
 	public boolean isEmpty();

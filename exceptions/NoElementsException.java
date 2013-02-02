@@ -1,7 +1,7 @@
 //-------------------------------------------------
 //	Written By: Matthew King
 //	GitHub Username: kingm8
-//	Filename: EmptyCollectionException.java
+//	Filename: NoElementsException.java
 //	Description: This exception is to be thrown if the
 //		program tries to remove an element from the 
 //		data structure when it contains no elements
@@ -10,9 +10,9 @@
 
 package exceptions;
 
-public class EmptyCollectionException extends RuntimeException
+public class NoElementsException extends RuntimeException
 {
-   public EmptyCollectionException (String message)
+   public NoElementsException (String message)
    {
       super (message);
    }
