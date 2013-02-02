@@ -1,0 +1,58 @@
+<project name="Checkbook" default="run">
+	<target name="compile" depends="clean">
+		<javac srcdir=".">
+			<include name="**/*.java"/>
+		</javac>
+	</target>
+   
+	<target name="authors">
+		<echo message = "Program Author: Matthew King"/>
+		<echo message = "Completed December 2011"/>
+	</target>
+   
+	<target name="clean">
+        <delete>
+            <fileset dir="." includes="**/*.class"/>
+        </delete>
+        <delete dir = "META-INF/"/>
+        <delete>
+        	<fileset dir="." includes="**/*.*~"/>
+        </delete>
+    </target>
+    
+    <target name="jar">
+    	<jar
+			includes = "build.xml, *.java, king/matthew/*.java, javafoundations/*.java, javafoundations/exceptions/*.java"
+			basedir = "."
+			jarfile ="checkbook.jar"/>
+	</target>
+	
+	<target name="exeJar" depends="compile">
+		<jar
+			destfile="Checkbook.jar"
+			basedir="."
+			includes="**/*.class">
+			<manifest>
+				<attribute name="Built-By" value="Matthew King" />
+				<attribute name="Implementation-Title" value="Texas Hold'em Poker" />
+				<attribute name="Implementation-Version" value="1.0.1" />
+				<attribute name="Main-Class" value="king.Checkbook" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="zip">
+		<zip
+			destfile="checkbook.zip"
+			basedir="."
+			includes = "build.xml, CheckBook.txt, *.java, king/matthew/*.java, javafoundations/*.java, javafoundations/exceptions/*.java"/>
+	</target>
+   
+	<target name="run" depends="compile, authors">
+		<java
+			classname="king.Checkbook"
+			classpath="."
+			fork="true" >
+		</java>
+	</target>	
+</project>
